@@ -1,7 +1,7 @@
 import { Asset, Entry, EntryCollection } from 'contentful'
 import { Document } from '@contentful/rich-text-types'
 
-export interface ISalesItemFields {
+export interface SalesItemFields {
   /** Title */
   title: string
 
@@ -12,10 +12,10 @@ export interface ISalesItemFields {
   description?: Document
 
   /** Images */
-  images?: Asset[]
+  images: [Asset] & Asset[]
 }
 
-export interface ISalesItem extends Entry<ISalesItemFields> {
+export interface SalesItem extends Entry<SalesItemFields> {
   sys: {
     id: string
     type: string
@@ -33,7 +33,7 @@ export interface ISalesItem extends Entry<ISalesItemFields> {
 }
 
 // To cirucmvent typing bugs
-export type FixedEntries = EntryCollection<ISalesItem> & { items: ISalesItem[] }
+export type FixedEntries = EntryCollection<SalesItem> & { items: SalesItem[] }
 
 export type CONTENT_TYPE = 'salesItem'
 export type LOCALE_CODE = 'en-US'

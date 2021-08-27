@@ -1,6 +1,6 @@
 import * as contentful from 'contentful'
 import { getEnv } from 'utils/env'
-import { FixedEntries, ISalesItem } from './types'
+import { FixedEntries, SalesItem } from './types'
 const {
   CONTENTFUL_DELIVERY_TOKEN,
   CONTENTFUL_SPACE,
@@ -14,11 +14,11 @@ const client = contentful.createClient({
 })
 
 export const fetchSalesItems = async () => {
-  const response = await client.getEntries<ISalesItem>()
+  const response = await client.getEntries<SalesItem>()
   return response as FixedEntries
 }
 
 export const fetchSalesItem = async (id: string) => {
-  const response = await client.getEntry<ISalesItem>(id)
+  const response = await client.getEntry<SalesItem>(id)
   return response
 }
